@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f0f8ff;
+        }
+
+        .calculator {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .calculator h1 {
+            color: #4CAF50;
+            margin-bottom: 1rem;
+        }
+
+        .calculator input[type="date"] {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .calculator button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .calculator button:hover {
+            background: #45a049;
+        }
+
+        .result {
+            margin-top: 1rem;
+            font-size: 1.25rem;
+            color: #333;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>Age Calculator</h1>
+        <p>Calculate your age from the fixed date <strong>1996-09-01</strong> to a selected date.</p>
+        <input type="date" id="selectedDate" max="9999-12-31">
+        <button onclick="calculateAge()">Calculate Age</button>
+        <div class="result" id="ageResult"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Age Calculator</p>
+    </footer>
+
+    <script>
+        function calculateAge() {
+            const fixedDate = new Date('1996-09-01');
+            const selectedDate = new Date(document.getElementById('selectedDate').value);
+
+            if (isNaN(selectedDate.getTime())) {
+                document.getElementById('ageResult').textContent = "Please select a valid date.";
+                return;
+            }
+
+            let years = selectedDate.getFullYear() - fixedDate.getFullYear();
+            let months = selectedDate.getMonth() - fixedDate.getMonth();
+            let days = selectedDate.getDate() - fixedDate.getDate();
+
+            if (days < 0) {
+                months--;
+                days += new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 0).getDate();
+            }
+
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+
+            document.getElementById('ageResult').textContent = 
+                `Age: ${years} years, ${months} months, and ${days} days.`;
+        }
+    </script>
+</body>
+</html>
