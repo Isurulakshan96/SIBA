@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Video Downloader</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        input { width: 80%; padding: 10px; margin: 10px; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    </style>
+    <script>
+        async function downloadVideo() {
+            const url = document.getElementById("videoUrl").value;
+            const serverUrl = "https://your-backend-server.com/download"; // Change to your hosted Flask server
+
+            if (!url) {
+                alert("Please enter a YouTube URL");
+                return;
+            }
+
+            document.getElementById("status").innerText = "Processing...";
+
+            try {
+                const response = await fetch(serverUrl, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ url })
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    document.getElementById("status").innerHTML = `✅ Download Ready! <a href="${result.file}" target="_blank">Click here</a>`;
+                } else {
+                    document.getElementById("status").innerText = "❌ Error: " + result.error;
+                }
+            } catch (error) {
+                document.getElementById("status").innerText = "❌ Server Error!";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>YouTube Video Downloader</h1>
+    <input type="text" id="videoUrl" placeholder="Enter YouTube Video URL">
+    <button onclick="downloadVideo()">Download</button>
+    <p id="status"></p>
+</body>
+</html>
