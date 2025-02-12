@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Isuru Lakshan - Portfolio</title>
+  <style>
+    /* Global Styles */
+    :root {
+      --primary-color: #6e44ff; /* Neon Purple */
+      --secondary-color: #00d9ff; /* Electric Blue */
+      --background-color: #1a1a1a; /* Dark Background */
+      --text-color: #ffffff; /* White Text */
+      --accent-color: #ff2e63; /* Neon Pink */
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--secondary-color);
+    }
+
+    a:hover {
+      color: var(--accent-color);
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: var(--text-color);
+      padding: 60px 20px;
+      text-align: center;
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 3rem;
+      font-weight: 700;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    header p {
+      margin: 10px 0 0;
+      font-size: 1.5rem;
+      animation: fadeIn 2.5s ease-in-out;
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: var(--text-color);
+      margin: 0 20px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent-color);
+    }
+
+    /* Sections */
+    section {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      color: var(--primary-color);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* About Section */
+    #about {
+      background: var(--background-color);
+    }
+
+    #about img {
+      border-radius: 50%;
+      width: 200px;
+      height: 200px;
+      border: 5px solid var(--primary-color);
+      margin-bottom: 20px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    #about p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.2rem;
+      line-height: 1.8;
+    }
+
+    /* Portfolio Section */
+    #portfolio {
+      background: var(--background-color);
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 20px;
+    }
+
+    .portfolio-item {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .portfolio-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .portfolio-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .portfolio-item h3 {
+      margin: 15px 0 10px;
+      font-size: 1.5rem;
+      color: var(--primary-color);
+    }
+
+    .portfolio-item p {
+      padding: 0 15px 15px;
+      font-size: 1rem;
+    }
+
+    /* Services Section */
+    #services {
+      background: var(--background-color);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 20px;
+    }
+
+    .service-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 15px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .service-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .service-item h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: var(--primary-color);
+    }
+
+    .service-item p {
+      font-size: 1rem;
+    }
+
+    /* Testimonials Section */
+    #testimonials {
+      background: var(--background-color);
+    }
+
+    .testimonial-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 15px;
+      margin: 20px auto;
+      max-width: 800px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .testimonial-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .testimonial-item p {
+      font-style: italic;
+      font-size: 1.2rem;
+    }
+
+    .testimonial-item h4 {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      color: var(--primary-color);
+    }
+
+    /* Contact Section */
+    #contact {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+      padding: 100px 20px 60px;
+    }
+
+    #contact form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    #contact input, #contact textarea {
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-color);
+    }
+
+    #contact input::placeholder, #contact textarea::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    #contact button {
+      padding: 15px 30px;
+      background: var(--accent-color);
+      color: var(--text-color);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    #contact button:hover {
+      background: #ff1a4f;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--background-color);
+      color: var(--text-color);
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    footer a {
+      color: var(--accent-color);
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>Isuru Lakshan</h1>
+    <p>WordPress Designer & Developer | 2025</p>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#about">About</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#services">Services</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Me</h2>
+    <img src="C:\Users\Isuru Lakshan\Music\Portfolio\Images\Profile Picture.jpg" alt="Isuru Lakshan">
+    <p>Hi, I'm Isuru Lakshan, a passionate WordPress designer and developer with over 5 years of experience. I specialize in creating modern, responsive, and high-performance websites using the latest technologies like React, Node.js, and advanced CSS. Let's build something amazing together!</p>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section id="portfolio">
+    <h2>Portfolio</h2>
+    <div class="portfolio-grid">
+      <div class="portfolio-item">
+        <img src="C:\Users\Isuru Lakshan\Music\Portfolio\Images\2.png" alt="Project 1">
+        <h3>E-Commerce Website</h3>
+        <p>Built a WooCommerce-based online store with custom features and seamless payment integration.</p>
+      </div>
+      <div class="portfolio-item">
+        <img src="C:\Users\Isuru Lakshan\Music\Portfolio\Images\1.png" alt="Project 2">
+        <h3>Corporate Website</h3>
+        <p>Developed a responsive corporate website with a custom WordPress theme and SEO optimization.</p>
+      </div>
+      <div class="portfolio-item">
+        <img src="C:\Users\Isuru Lakshan\Music\Portfolio\Images\3.png" alt="Project 3">
+        <h3>E-Commerce Website</h3>
+        <p>Built a WooCommerce-based online store with custom features and seamless payment integration.</p>
+      </div>
+      <div class="portfolio-item">
+        <img src="C:\Users\Isuru Lakshan\Music\Portfolio\Images\4.png" alt="Project 4">
+        <h3>E-Commerce Website</h3>
+        <p>Built a WooCommerce-based online store with custom features and seamless payment integration.</p>
+      </div>
+      <div class="portfolio-item">
+        <img src="C:\Users\Isuru Lakshan\Music\Portfolio\Images\5.png" alt="Project 5">
+        <h3>E-Commerce Website</h3>
+        <p>Built a WooCommerce-based online store with custom features and seamless payment integration.</p>
+      </div>
+      <div class="portfolio-item">
+        <img src="C:\Users\Isuru Lakshan\Music\Portfolio\Images\6.png" alt="Project 6">
+        <h3>E-Commerce Website</h3>
+        <p>Built a WooCommerce-based online store with custom features and seamless payment integration.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services">
+    <h2>Services</h2>
+    <div class="services-grid">
+      <div class="service-item">
+        <h3>WordPress Design</h3>
+        <p>Custom WordPress themes tailored to your brand's identity.</p>
+      </div>
+      <div class="service-item">
+        <h3>Plugin Development</h3>
+        <p>Custom plugins to extend your website's functionality.</p>
+      </div>
+      <div class="service-item">
+        <h3>SEO Optimization</h3>
+        <p>Improve your website's visibility and ranking on search engines.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials">
+    <h2>Testimonials</h2>
+    <div class="testimonial-item">
+      <p>"Isuru is an incredible developer! He delivered the project on time and exceeded our expectations."</p>
+      <h4>- Jane Doe, CEO of XYZ Company</h4>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+  
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Isuru Lakshan. All rights reserved. | <a href="#">Privacy Policy</a></p>
+  </footer>
+
+  <!-- JavaScript for Smooth Scrolling -->
+  <script>
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
